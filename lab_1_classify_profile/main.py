@@ -26,7 +26,18 @@ def tokenize(text: str) -> Sequence[str] | None:
         Sequence[str] | None: Sequence of lower-cased tokens without punctuation.
         Returns None if input text is not a string.
     """
-
+    if type(text) != str:
+        return None
+    tokens = []
+    for word in text.split():
+        clean_word = ""
+        for letter in word:
+            if letter.isalpha():
+                clean_word +=
+    letter.lower()
+    if len(clean_word) > 0:
+        tokens.append(clean_word)
+    return tokens
 
 def remove_stop_words(tokens: Sequence[str], stop_words: Sequence[str]) -> Sequence[str] | None:
     """
@@ -39,6 +50,14 @@ def remove_stop_words(tokens: Sequence[str], stop_words: Sequence[str]) -> Seque
         Sequence[str] | None: Sequence of tokens without stop words.
         Returns None in case of incorrect input types.
     """
+    if type(tokens) != list or type (stop_words) != list:
+        return None
+    result = []
+    for word in tokens:
+        if word not in stop_words:
+            result.append(word)
+    return result
+
 
 
 def calculate_frequencies(tokens: Sequence[str]) -> dict[str, float] | None:
@@ -51,6 +70,18 @@ def calculate_frequencies(tokens: Sequence[str]) -> dict[str, float] | None:
         dict[str, float] | None: Dictionary with frequencies.
         Returns None in case of incorrect input types.
     """
+    if type(tokens) not in (list, tuple):
+        return None
+    if not tokens:
+        return {}
+    freq_dictionary = {}
+    for token in tokens:
+        if token in freq_dictionary:
+            freq_dictionary[token] += 1
+        else:
+            freq_dictionary[token] = 1
+    return freq_dictionary
+
 
 
 def get_top_n_words(freq_dict: dict[str, float], top_n: int) -> Sequence[str] | None:
