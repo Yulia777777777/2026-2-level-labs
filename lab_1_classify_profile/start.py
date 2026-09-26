@@ -5,7 +5,6 @@ Language detection starter.
 from lab_1_classify_profile.main import (
     calculate_frequencies,
     create_language_profile,
-    detect_language_by_mse,
     detect_language_by_top_n,
     get_top_n_words,
     remove_stop_words,
@@ -42,7 +41,7 @@ def main() -> None:
 
     print(result)
 
-    # определение языка
+    # Определение языка
     unknown_profile = create_language_profile("unknown", unknown_text, stopwords)
 
     en_profile = create_language_profile("en", en_text, stopwords)
