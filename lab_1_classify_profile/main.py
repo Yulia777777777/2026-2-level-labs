@@ -150,7 +150,7 @@ def create_language_profile(
     if tokens is None:
         return None
 
-    filtered =  _words(tokens, stop_words)
+    filtered = remove_stop_words(tokens, stop_words)
     if filtered is None:
         return None
 
