@@ -53,6 +53,9 @@ def main() -> None:
 
     if de_profile is not None and en_profile is not None and unknown_profile is not None:
         result = detect_language_by_top_n(unknown_profile, en_profile, de_profile, 15)
+        print("Язык неизвестного теста:", result)
+
+        assert result, "Detection result is None"
 
 
 if __name__ == "__main__":
