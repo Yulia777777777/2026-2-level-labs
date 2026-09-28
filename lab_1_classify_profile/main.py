@@ -256,13 +256,9 @@ def detect_language_by_top_n(
 
     if distance_1 < distance_2:
         return profile_1[0]
-    elif distance_2 < distance_1:
+    if distance_2 < distance_1:
         return profile_2[0]
-    else:
-        if profile_1[0] < profile_2[0]:
-            return profile_1[0]
-        else:
-            return profile_2[0]
+    return profile_1[0] if profile_1[0] < profile_2[0] else profile_2[0]
 
 
 # Mark 8
