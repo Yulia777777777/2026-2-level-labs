@@ -4,6 +4,7 @@ Language detection starter.
 
 from lab_1_classify_profile.main import (
     calculate_frequencies,
+    compare_profiles_by_top_n,
     create_language_profile,
     detect_language_by_top_n,
     get_top_n_words,
@@ -52,8 +53,14 @@ def main() -> None:
         return None
 
     if de_profile is not None and en_profile is not None and unknown_profile is not None:
+        distance_en = compare_profiles_by_top_n(unknown_profile, en_profile, 15)
+        distance_de = compare_profiles_by_top_n(unknown_profile, de_profile, 15)
         result = detect_language_by_top_n(unknown_profile, en_profile, de_profile, 15)
-        print("Язык неизвестного теста:", result)
+
+
+        print(f"Дистанция до en:{distance_en:.4f}")
+        print(f"Дистанция до de:{distance_de:.4f}")
+        print("Язык неизвестного текста:", result)
 
         assert result, "Detection result is None"
 

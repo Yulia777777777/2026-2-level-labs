@@ -5,7 +5,6 @@ Language detection
 """
 
 # pylint:disable=unused-argument
-from pydoc import text
 from typing import Sequence
 
 FreqDictType = dict[str, float]
