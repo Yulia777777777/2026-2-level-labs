@@ -37,16 +37,6 @@ def tokenize(text: str) -> Sequence[str] | None:
 
     return tokens
 
-    tokens = []
-    for word in text.split():
-        clean_word = ""
-        for char in word:
-            if char.isalpha():
-                clean_word += char.lower()
-        if clean_word:
-            tokens.append(clean_word)
-
-    return tokens
 
 def remove_stop_words(tokens: Sequence[str], stop_words: Sequence[str]) -> Sequence[str] | None:
     """
@@ -176,19 +166,6 @@ def create_language_profile(
 
     return language, freq_dict, n_words
 
-    tokens = tokenize(text)
-    if tokens is None:
-        return None
-
-    filtered = remove_stop_words(tokens, stop_words)
-    if filtered is None:
-        return None
-
-    freq = calculate_frequencies(filtered)
-    if freq is None:
-        return None
-
-    return (language, freq, len(freq))
 
 def check_profile(profile: ProfileType) -> bool:
     """
@@ -349,6 +326,7 @@ def calculate_mse(predicted: Sequence[float], actual: Sequence[float]) -> float 
         diffs.append(diff)
 
     return sum(diffs) / len(actual)
+
 
 def compare_profiles_by_mse(
     unknown_profile: ProfileType, profile_to_compare: ProfileType
