@@ -234,7 +234,28 @@ def get_vocabulary(
 
     In case of corrupt input arguments, None is returned
     """
+    if not isinstance(word_frequencies, dict) or not isinstance(unknown_token, str):
+        return None
 
+    vocabulary = {}
+    tokens = []
+
+    for word in word_frequencies:
+        if isinstance(word, tuple):
+            token_str = "".join(str(char) for char in word)
+        else:
+            token_str = str(word)
+        tokens.append(token_str)
+
+    tokens.sort()
+
+    current_id = 0
+    for token_str in tokens:
+        if token_str not in vocabulary:
+            vocabulary[token_str] = current_id
+            current_id += 1
+
+    return vocabulary
 
 def decode(
     encoded_text: Sequence[int] | None,
